@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>定位展示知识点视图（课本1:1还原版）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* 保留列表默认圆点，和课本一致 */
+        ul { 
+            list-style: disc;
+            padding-left: 20px; /* 给圆点留出空间 */
+        }
+
+        /* 父容器：必须相对定位 */
+        .container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+
+        /* 中间椭圆：相对定位 + 提高层级 */
+        .center-ellipse {
+            position: absolute; /* 绝对定位精确居中 */
+            width: 360px;
+            height: 220px;
+            background: url("1.1.jpg") no-repeat center center;
+            background-size: contain;
+            border-radius: 50%; /* 椭圆 */
+            z-index: 10; /* 确保在方块之上 */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 三个模块：绝对定位，还原课本浅灰背景 */
+        .box {
+            position: absolute;
+            width: 220px;
+            padding: 12px;
+            /* 还原课本的浅灰色背景，和图二一致 */
+            background: #e0e0e0;
+            border: 1px solid #999;
+            z-index: 5; /* 低于椭圆 */
+        }
+
+        /* 🔴 关键修改：小标题左对齐，和课本完全一致 */
+        .box h3 {
+            text-align: left; /* 从center改为left */
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .box li {
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        /* 左上角 HTML */
+        .html {
+            top: 40px;
+            left: 40px;
+        }
+
+        /* 左下角 CSS —— 基准位置 */
+        .css {
+            bottom: 40px;
+            left: 40px;
+        }
+
+        /* 右侧 JS —— 与左下角 CSS 垂直对齐 */
+        .js {
+            bottom: 40px;
+            right: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 中间椭圆 -->
+    <div class="center-ellipse"></div>
+
+    <!-- 左侧 HTML -->
+    <div class="box html">
+        <h3>HTML基础和HTML5</h3>
+        <ul>
+            <li>HTML标签与属性</li>
+            <li>HTML5多媒体（视频和音频）</li>
+            <li>HTML5图像标签（画布和SVG）</li>
+            <li>HTML5地理定位</li>
+            <li>HTML5表单</li>
+        </ul>
+    </div>
+
+    <!-- 左下角 CSS -->
+    <div class="box css">
+        <h3>CSS基础和CSS3</h3>
+        <ul>
+            <li>CSS选择器</li>
+            <li>CSS样式</li>
+            <li>CSS盒模型与定位</li>
+            <li>CSS3的2D与3D转换</li>
+            <li>CSS3的过渡与动画</li>
+            <li>CSS3新的边框效果</li>
+        </ul>
+    </div>
+
+    <!-- 右侧 JS —— 与左下角完全对齐 -->
+    <div class="box js">
+        <h3>JavaScript</h3>
+        <ul>
+            <li>数据类型</li>
+            <li>运算符</li>
+            <li>基础语法</li>
+            <li>BOM对象</li>
+            <li>DOM对象</li>
+            <li>JS特效</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
